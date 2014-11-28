@@ -197,7 +197,7 @@ var Suaip = (function (Hammer, window) {
         var opacity = (distancePercent < 30) ? 30 : distancePercent;
 
         translateElement(cardElements.left, -(cardElements.active.scrollWidth - e.gesture.distance), 0, 0);
-        cardElements.after.getElementsByTagName('p')[0].style.color = 'rgba(0, 0, 0, 0.' + opacity + ')';
+        cardElements.left.getElementsByTagName('p')[0].style.color = 'rgba(0, 0, 0, 0.' + opacity + ')';
     };
 
     /**

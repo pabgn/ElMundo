@@ -32,7 +32,6 @@ gulp.task('less', function (done) {
   gulp.src(paths.less)
     .pipe(less())
     .pipe(minifyCss({keepSpecialComments: 0}))
-    .pipe(gulp.dest('./www/css/'))
     .pipe(rename({extname : '.min.css'}))
     .pipe(gulp.dest('./www/css/'))
     .on('end', done);
@@ -61,7 +60,7 @@ gulp.task('watch_js', function() {
   gulp.watch(paths.js, ['js']);
 });
 
-gulp.task('watch', ['sass', 'less', 'js', 'watch_sass', 'watch_less', 'watch_js', 'server']);
+gulp.task('watch', ['sass', 'less', 'js', 'watch_sass', 'watch_less', 'watch_js']);
 
 gulp.task('install', ['git-check'], function() {
   return bower.commands.install()

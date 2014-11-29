@@ -1,0 +1,8 @@
+<div class="news-card">
+    <div class="news-header" ng-bind="category"></div>
+    <h1 ng-bind-html="getTitle()"></h1>
+    <p class="author" ng-bind="news.author"></p>
+    <div ng-show="hasImage()" class="news-image" ng-style="{'background-image': 'url(' + getImage() + ')'}">
+    </div>
+    <div class="news-content" ng-bind-html="news.content"></div>
+</div>

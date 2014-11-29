@@ -13,6 +13,7 @@
 		    }
 		})
 	}])
-	.value('endpoint', 'http://localhost:3001');
+	.value('endpoint', 'http://localhost:3001')
+	.value('filesEndpoint', 'http://localhost:3001/file/');
 
 }(angular, window));

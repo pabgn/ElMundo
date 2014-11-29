@@ -14,13 +14,13 @@ var Suaip = (function (Hammer, window) {
      * @constant The speed cards will animate to completion with a fast drag
      * @type {number}
      */
-    var ANIMATION_SPEED_FAST = 100;
+    var ANIMATION_SPEED_FAST = 200;
 
     /**
      * @constant The speed cards will animate to completion with a slow drag
      * @type {number}
      */
-    var ANIMATION_SPEED_SLOW = 100;
+    var ANIMATION_SPEED_SLOW = 300;
 
     /**
      * @constant The boundary to determine a fast or slow drag 0 (slow) to 3+ (very fast)
@@ -80,10 +80,6 @@ var Suaip = (function (Hammer, window) {
             $scope.nextLevel = _nextLevel;
         });
 
-        document.getElementsByTagName('h1')[0].addEventListener('click', function () {
-            $scope.nextLevel();
-        });
-
         options.active.classList.add('active');
         options.after.classList.add('after');
 
@@ -104,7 +100,7 @@ var Suaip = (function (Hammer, window) {
      */
     var _bindTouchEvents = function () {
         h = new Hammer(cardElements.active, {
-            preventDefault: true
+            preventDefault: false
         });
 
         if ($scope.level !== 0) h.on('dragdown', _dragDown);
@@ -176,7 +172,7 @@ var Suaip = (function (Hammer, window) {
 
         translateElement(cardElements.active, 0, distanceDelta - e.gesture.distance, 0);
         translateElement(cardElements.after, 0, window.innerHeight - (-(distanceDelta - e.gesture.distance)), 0);
-        cardElements.after.getElementsByTagName('p')[0].style.color = 'rgba(0, 0, 0, 0.' + opacity + ')';
+        //cardElements.after.getElementsByTagName('p')[0].style.color = 'rgba(0, 0, 0, 0.' + opacity + ')';
     };
 
     var _dragLeft = function (e) {
@@ -185,7 +181,7 @@ var Suaip = (function (Hammer, window) {
         var opacity = Math.round((e.gesture.distance / cardElements.active.scrollWidth) * 100);
 
         translateElement(cardElements.right, cardElements.active.scrollWidth - e.gesture.distance, 0, 0);
-        cardElements.right.getElementsByTagName('p')[0].style.color = 'rgba(0, 0, 0, 0.' + opacity + ')';
+        //cardElements.right.getElementsByTagName('p')[0].style.color = 'rgba(0, 0, 0, 0.' + opacity + ')';
     };
 
     var _dragRight = function (e) {
@@ -194,7 +190,7 @@ var Suaip = (function (Hammer, window) {
         var opacity = Math.round((e.gesture.distance / cardElements.active.scrollWidth) * 100);
 
         translateElement(cardElements.left, -(cardElements.active.scrollWidth - e.gesture.distance), 0, 0);
-        cardElements.left.getElementsByTagName('p')[0].style.color = 'rgba(0, 0, 0, 0.' + opacity + ')';
+        //cardElements.left.getElementsByTagName('p')[0].style.color = 'rgba(0, 0, 0, 0.' + opacity + ')';
     };
 
     /**
@@ -207,7 +203,7 @@ var Suaip = (function (Hammer, window) {
 
         translateElement(cardElements.active, 0, distanceDelta + e.gesture.distance, 0);
         translateElement(cardElements.after, 0, -(window.innerHeight - (e.gesture.distance + distanceDelta)), 0);
-        cardElements.after.getElementsByTagName('p')[0].style.color = 'rgba(0, 0, 0, 0.' + opacity + ')';
+        //cardElements.after.getElementsByTagName('p')[0].style.color = 'rgba(0, 0, 0, 0.' + opacity + ')';
         draggingDown = true;
     };
 
@@ -368,9 +364,7 @@ var Suaip = (function (Hammer, window) {
      * Manage the movemenet of the card when the up gesture has ended
      */
     var _completeUpTransition = function () {
-        $scope.$apply(function () {
-            $scope.level = 1;
-        });
+        $scope.level = 1;
 
         distanceDelta = 0;
         bodyClass.add('dragup-complete');
@@ -427,10 +421,8 @@ var Suaip = (function (Hammer, window) {
             _bindTouchEvents();
             _removeAnimations();
         } else {
-            $scope.$apply(function () {
-                $scope.sectionIndex[$scope.level]++;
-                $scope.next();
-            });
+            $scope.sectionIndex[$scope.level]++;
+            $scope.next();
 
             bodyClass.add('dragleft-complete');
             cardElements.active.classList.add('drag-complete');
@@ -451,10 +443,8 @@ var Suaip = (function (Hammer, window) {
             _bindTouchEvents();
             _removeAnimations();
         } else {
-            $scope.$apply(function () {
-                $scope.sectionIndex[$scope.level]--;
-                $scope.prev();
-            });
+            $scope.sectionIndex[$scope.level]--;
+            $scope.prev();
 
             bodyClass.add('dragright-complete');
             cardElements.active.classList.add('drag-complete');

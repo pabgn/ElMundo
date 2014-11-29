@@ -1,0 +1,15 @@
+<div class="news-list">
+	<ion-header-bar class="bar-stable">
+		<button class="button button-icon icon icon-gear33"></button>
+	    <h1 class="title" ng-bind="category"></h1>
+	</ion-header-bar>
+	<div style="margin-top:42px;">
+	    <ul class="list">
+		    <li class="item" ng-repeat="news in newsList" ng-click="readNews($index)">
+		      <p class="title" ng-bind-html="newsTitle(news)"></p>
+		      <div class="image" ng-show="hasImage(news)" ng-style="{'background-image' : 'url(' + newsImage(news) + ')'}"></div>
+		      <div class="description" ng-bind-html="newsContent(news)"></div>
+		    </li>
+		</ul>
+	</div>
+</div>

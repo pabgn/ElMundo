@@ -9,13 +9,17 @@
 				category: '=category'
 			},
 			templateUrl: 'templates/news.html',
-			controller: ['$scope', 'filesEndpoint', function ($scope, filesEndpoint) {
+			controller: ['$scope', function ($scope) {
 				$scope.getImage = function () {
-					return ($scope.news && $scope.news.media) ? filesEndpoint + $scope.news.media[0].url : '';
+					return ($scope.news && $scope.news.media) ? $scope.news.media[0].url : '';
 				};
 
 				$scope.hasImage = function () {
 					return $scope.getImage() !== '';
+				};
+
+				$scope.prevLevel = function () {
+					$scope.$emit('gotoPrevLevel', {});
 				};
 
 				$scope.getTitle = function () {

@@ -78,6 +78,7 @@ var Suaip = (function (Hammer, window) {
         $scope = options.scope;
         $scope.$apply(function () {
             $scope.nextLevel = _nextLevel;
+            $scope.prevLevel = _prevLevel;
         });
 
         options.active.classList.add('active');
@@ -217,6 +218,18 @@ var Suaip = (function (Hammer, window) {
         _completeUpTransition();
     };
 
+    var _prevLevel = function () {
+        _unbindTouchEvents();
+        _addAnimations(ANIMATION_SPEED_SLOW);
+        direction = 'down';
+        _completeDownTransition({
+            gesture: {
+                distance: window.innerHeight
+            },
+            manual: true
+        });
+    };
+
     /**
      * On the dragend event, determine if the drag animation should slide
      * the next card in, or restore the active card.
@@ -237,7 +250,12 @@ var Suaip = (function (Hammer, window) {
 
         // Finish the transition after swipe.
         if ('down' === direction && $scope.level === 1) {
-            _completeDownTransition(e);
+            if (e.manual) {
+                _removeAnimations();
+                _bindTouchEvents();
+            } else {
+                _completeDownTransition(e);
+            }
         } else if ('left' === direction && $scope.canGoNext()) {
             _completeLeftTransition(e);
         } else if ('right' === direction && $scope.canGoPrev()) {
@@ -295,15 +313,77 @@ var Suaip = (function (Hammer, window) {
         activeCardClass.remove('drag-complete');
 
         if ('up' === direction) {
-            activeCardClass.add('before');
+            var cls = document.getElementById('top').classList;
+            cls.remove('active');
+            cls.remove('left');
+            cls.remove('right');
+            cls.remove('before');
+            cls.remove('after');
+            cls.add('before');
 
-            afterCardClass.remove('after');
-            afterCardClass.add('active');
+            cls = document.getElementById('left').classList;
+            cls.remove('active');
+            cls.remove('left');
+            cls.remove('right');
+            cls.remove('before');
+            cls.remove('after');
+            cls.add('left');
+
+            cls = document.getElementById('right').classList;
+            cls.remove('active');
+            cls.remove('left');
+            cls.remove('right');
+            cls.remove('before');
+            cls.remove('after');
+            cls.add('right');
+
+            cls = document.getElementById('read').classList;
+            cls.remove('active');
+            cls.remove('left');
+            cls.remove('right');
+            cls.remove('before');
+            cls.remove('after');
+            cls.add('active');
+
+            $scope.$apply(function () {
+                $scope.activeCard = 1;
+            });
         } else if ('down' === direction) {
-            activeCardClass.add('after');
+            var cls = document.getElementById('top').classList;
+            cls.remove('active');
+            cls.remove('left');
+            cls.remove('right');
+            cls.remove('before');
+            cls.remove('after');
+            cls.add('active');
 
-            afterCardClass.remove('before');
-            afterCardClass.add('active');
+            cls = document.getElementById('left').classList;
+            cls.remove('active');
+            cls.remove('left');
+            cls.remove('right');
+            cls.remove('before');
+            cls.remove('after');
+            cls.add('left');
+
+            cls = document.getElementById('right').classList;
+            cls.remove('active');
+            cls.remove('left');
+            cls.remove('right');
+            cls.remove('before');
+            cls.remove('after');
+            cls.add('right');
+
+            cls = document.getElementById('read').classList;
+            cls.remove('active');
+            cls.remove('left');
+            cls.remove('right');
+            cls.remove('before');
+            cls.remove('after');
+            cls.add('after');
+
+            $scope.$apply(function () {
+                $scope.activeCard = 1;
+            });
         } else if ('left' === direction) {
             rightCardClass.remove('right');
             rightCardClass.add('active');
@@ -396,10 +476,15 @@ var Suaip = (function (Hammer, window) {
             _removeAnimations();
         } else {
             // Discard card and show the next one
-            $scope.$apply(function () {
+            if (!$scope.$$phase) {
+                $scope.$apply(function () {
+                    $scope.level = 0;
+                    $scope.back();
+                });
+            } else {
                 $scope.level = 0;
                 $scope.back();
-            });
+            }
 
             distanceDelta = 0;
             bodyClass.add('dragdown-complete');

@@ -16,19 +16,18 @@
     </head>
     <body ng-app="em">
         <ion-pane>
-        	<div style="position: fixed;left: 50%;bottom: -50px;left: 50%;z-index: 99;">
-        		<div class="info-pager">
-	        		<ul>
-		        		<li class="menu-icon active-icon">3</li>
-		        		<li class="menu-icon point active-icon">2</li>
-		        		<li class="menu-icon point">2</li>
-		        		<li class="menu-icon point">2</li>
-		        		<li class="menu-icon location">c</li>
-						<li class="menu-icon later">4</li>
-	        		</ul>
-        		</div>
-        	</div>
             <ion-content scroll="false" ng-controller="CardGridCtrl">
+                <div style="position: fixed;left: 50%;bottom: -50px;left: 50%;z-index: 99;" ng-show="showPager">
+                    <div class="info-pager">
+                        <ul>
+                            <li class="menu-icon active-icon"><span ng-class="{'active-icon': selectedCategory == -1}">3</span></li>
+                            <li class="menu-icon point" ng-repeat="cat in userCategories"><span ng-class="{'active-icon': cat == userCategories[selectedCategory] }">2</span></li>
+                            <li class="menu-icon location">c</li>
+                            <li class="menu-icon later">4</li>
+                        </ul>
+                    </div>
+                </div>
+
                 <swipe-cards>
                     <swipe-card ng-repeat="card in cards" on-destroy="cardDestroyed($index)" on-card-swipe="cardSwiped($index)">
                        <div style="text-align: center;margin-top:27px;">
@@ -69,7 +68,7 @@
                 </div>
 
                 <div class="suaip-card" id="top">
-                    <news-list-tpl category="getCategory()" news-list="getCurrentNews()"></news-list-tpl>
+                    <news-list-tpl category="getCategoryForCenter()" ng-if="showTopCenter()" news-list="getNewsForCenter()"></news-list-tpl>
                 </div>
 
                 <div class="suaip-card" id="read">
@@ -77,10 +76,28 @@
                 </div>
 
                 <div class="suaip-card" id="left">
+                    <div class="main-menu" ng-show="selectedCategory < 0">
+                        <ion-header-bar class="bar-stable">
+                            <h1 class="title">Categorías</h1>
+                        </ion-header-bar>
+
+                         <div class="content has-header">
+                             <ul class="list">
+                                 <li class="item" ng-repeat="cat in categories" ng-click="openNewTab($index)">
+                                     <label class="checkbox">
+                                        <div class="icon icon-check" ng-class="iconForCategory(cat)"></div>
+                                    </label>
+                                    <span ng-bind="cat.title"></span>
+                                 </li>
+                             </ul>
+                        </div>
+                    </div>
+                    <news-list-tpl category="getCategoryForLeft()" ng-if="showTopLeft()" news-list="getNewsForLeft()"></news-list-tpl>
                     <news-tpl news="articleForLeft()" ng-if="showLeft()" category="getCategory()"></news-tpl>
                 </div>
 
                 <div class="suaip-card" id="right">
+                    <news-list-tpl category="getCategoryForRight()" ng-if="showTopRight()" news-list="getNewsForRight()"></news-list-tpl>
                     <news-tpl news="articleForRight()" ng-if="showRight()" category="getCategory()"></news-tpl>
                 </div>
             </ion-content>

@@ -9,7 +9,7 @@
 				newsList: '=newsList'
 			},
 			templateUrl: 'templates/news-list.html',
-			controller: ['$scope', 'filesEndpoint', '$sce', function ($scope, filesEndpoint) {
+			controller: ['$scope', function ($scope) {
 				$scope.hasImage = function (news) {
 					return news.media && news.media.length > 0;
 				};
@@ -25,7 +25,7 @@
 
 				$scope.newsImage = function (news) {
 					if (!news.media) return '';
-					return filesEndpoint + news.media[0].url;
+					return news.media[0].url;
 				};
 
 				$scope.readNews = function (index) {

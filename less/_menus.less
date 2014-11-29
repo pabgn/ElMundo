@@ -113,10 +113,15 @@
 	padding-top:20px;
 	font-size:20px;font-family:'Helvetica Neue';font-weight:400;opacity:1!important;background-color:#e9e7e2;overflow-y:scroll;bottom:0}.suaip-card p{color:transparent}.suaip-card.active p{color:#31302C!important}ion-content{background-color:#e9e7e2}
 
-#top .bar-stable{
-	background-color: #f5f3ef !important;
+.news-list {
+	position: relative;
 }
-#top li {
+
+.news-list .bar-stable{
+	background-color: #f5f3ef !important;
+	position: fixed;
+}
+.news-list li {
 	padding-top:20px;
 	padding-bottom:25px;
 	padding-left:15px;
@@ -125,14 +130,17 @@
 	overflow: hidden;
 	text-overflow: ellipsis;
 	background-color: #e9e7e2;
-
-
 }
-#top h1{
+
+.news-list li .image {
+	background-position: center center;
+}
+
+.news-list h1{
 	color:#44423d;
 
 }
-#top li .title{
+.news-list li .title{
 	font-family: 'Helvetica Neue';
 	font-size:19px;
 	font-weight: 500;
@@ -179,7 +187,7 @@
 	margin-right:3px;
 	line-height: 16px;
 }
-.info-pager li.active-icon{
+.info-pager li .active-icon{
 	color:#e9e7e2;
 }
 .info-pager li.menu-icon.point{
@@ -191,7 +199,7 @@
 .info-pager li.menu-icon.later{
 	font-size:18px;
 }
-#top li .image {
+.news-list li .image {
 	float:left;
 	margin-right:16px;
 	background-size: cover;
@@ -204,7 +212,7 @@
 	left: auto !important;
 }
 
-#top li .description {
+.news-list li .description {
 	font-size:15px;
 	color:#9A9997;
 	text-overflow: ellipsis;
@@ -213,4 +221,9 @@
 	height:50px;
 	background-color: transparent;
 	letter-spacing: 0.1px;
+}
+
+.main-menu .bar-stable {
+	position: fixed;
+	z-index: 9999;
 }

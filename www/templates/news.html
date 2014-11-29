@@ -5,4 +5,5 @@
     <div ng-show="hasImage()" class="news-image" ng-style="{'background-image': 'url(' + getImage() + ')'}">
     </div>
     <div class="news-content" ng-bind-html="news.content"></div>
+    <button class="go-back" ng-click="prevLevel()"><span class="icon-article"></span></button>
 </div>

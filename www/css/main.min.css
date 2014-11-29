@@ -1,1 +1,129 @@
-.suaip-card{min-height:100%!important;color:#000!important;padding:74px 30px 30px;font-size:20px;font-family:'Helvetica Neue';font-weight:400;opacity:1!important;background-color:#e9e7e2;overflow-y:scroll;bottom:0}.suaip-card p{color:transparent}.suaip-card.active p{color:#31302C!important}ion-content{background-color:#e9e7e2}
+@font-face {
+	font-family: 'icomoon';
+	src:url('fonts/icomoon.eot?gtge70');
+	src:url('fonts/icomoon.eot?#iefixgtge70') format('embedded-opentype'),
+		url('fonts/icomoon.woff?gtge70') format('woff'),
+		url('fonts/icomoon.ttf?gtge70') format('truetype'),
+		url('fonts/icomoon.svg?gtge70#icomoon') format('svg');
+	font-weight: normal;
+	font-style: normal;
+}
+[class^="icon-"], [class*=" icon-"] {
+	font-family: 'icomoon';
+	speak: none;
+	font-style: normal;
+	font-weight: normal;
+	font-variant: normal;
+	text-transform: none;
+	line-height: 1;
+
+	/* Better Font Rendering =========== */
+	-webkit-font-smoothing: antialiased;
+	-moz-osx-font-smoothing: grayscale;
+}
+
+.icon-gear33:before {
+	content: "\35";
+	font-size:17px !important;
+}
+.suaip-card{
+	min-height:100%!important;color:#000!important;
+	padding-top:20px;
+	font-size:20px;font-family:'Helvetica Neue';font-weight:400;opacity:1!important;background-color:#e9e7e2;overflow-y:scroll;bottom:0}.suaip-card p{color:transparent}.suaip-card.active p{color:#31302C!important}ion-content{background-color:#e9e7e2}
+
+.suaip-card .bar-stable{
+	background-color: #f5f3ef !important;
+}
+.suaip-card li {
+	padding-top:20px;
+	padding-bottom:25px;
+	padding-left:15px;
+	padding-right:15px;
+	list-style-position:inside;
+	overflow: hidden;
+	text-overflow: ellipsis;  
+	background-color: #e9e7e2; 
+	 
+	
+}
+.suaip-card h1{
+	color:#44423d;
+	
+}
+.suaip-card li .title{
+	font-family: 'Helvetica Neue';
+	font-size:19px;
+	font-weight: 500;
+	color:#44423d;
+	 overflow: inherit !important;
+	 text-overflow: inherit !important;
+	white-space: initial !important;
+	line-height: 1.3em;
+
+	
+}
+.info-pager{
+	position:relative;
+	left: -50%;
+	bottom:65px;
+	margin: 0 auto;
+	height:40px;
+	background-color:rgba(68, 66, 61, 0.8);
+	border-radius: 2px;
+	z-index:99;
+	padding-right:3px;
+	
+}
+.info-pager ul{
+	list-style: none;
+	padding:0;
+	margin:0;
+	padding:12px;
+
+	
+}
+.info-pager li .menu-icon{
+	
+}
+.info-pager li{
+	display:inline;
+	font-family: 'icomoon';
+	color:#9a9893;
+	font-size:24px;
+	margin-right:3px;
+	line-height: 16px;
+}
+.info-pager li.active-icon{
+	color:#e9e7e2;
+}
+.info-pager li.menu-icon.point{
+	font-size:20px;
+}
+.info-pager li.menu-icon.location{
+	font-size:18px;
+}
+.info-pager li.menu-icon.later{
+	font-size:18px;
+}
+.suaip-card li .image{
+	float:left;
+	margin-right:16px;
+	background-size: cover;
+	width:75px;
+	height:55px;
+	border-radius: 1px;
+
+}
+
+
+.suaip-card li .description {
+	font-size:15px;
+	color:#9A9997;
+	text-overflow: ellipsis;
+	white-space: initial !important;
+	margin-top:-2px;
+	height:50px;
+	background-color: transparent;
+	letter-spacing: 0.1px;
+	
+}

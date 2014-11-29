@@ -10,6 +10,7 @@
         <link href="css/main.min.css" rel="stylesheet">
         <script src="lib/ionic/js/ionic.bundle.js"></script>
         <script src="lib/hammer.js/hammer.min.js"></script>
+        <script src="lib/ionic-ion-swipe-cards/ionic.swipecards.js"></script>
         <script src="cordova.js"></script>
         <script src="js/app.min.js"></script>
     </head>
@@ -28,6 +29,19 @@
         		</div>
         	</div>
             <ion-content scroll="false" ng-controller="CardGridCtrl">
+                <swipe-cards>
+                    <swipe-card ng-repeat="card in cards" on-destroy="cardDestroyed($index)" on-card-swipe="cardSwiped($index)">
+                       <div style="text-align: center;margin-top:27px;">
+                        <div class="later-icon"><button class="button button-icon icon icon-theclock2"></button>
+                            <p>Leer más tarde</p>
+                        </div>
+                        <div class="share-icon"><button class="button button-icon icon icon-share2"></button>
+                            <p>Compartir</p>
+                        </div>
+                       </div>
+                  </swipe-card>
+                </swipe-cards>
+
                 <div id="intro" ng-show="showIntro">
                     <ion-header-bar class="bar-stable">
                         <h1 class="title">El Mundo</h1>

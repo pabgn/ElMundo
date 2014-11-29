@@ -264,6 +264,18 @@
 
 		};
 
+		$scope.cards = [
+			{
+				title: 'Hola',
+			}
+		];
+
+		$scope.cardDestroyed = function (index) {
+		};
+
+		$scope.cardSwiped = function (index) {
+		};
+
 		window.addEventListener('DOMContentLoaded', function () {
 			Suaip.init({
 				active: document.getElementById('top'),

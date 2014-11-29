@@ -14,7 +14,7 @@ var Suaip = (function (Hammer, window) {
      * @constant The speed cards will animate to completion with a fast drag
      * @type {number}
      */
-    var ANIMATION_SPEED_FAST = 200;
+    var ANIMATION_SPEED_FAST = 100;
 
     /**
      * @constant The speed cards will animate to completion with a slow drag
@@ -172,8 +172,7 @@ var Suaip = (function (Hammer, window) {
      * @param {Event} e Drag event
      */
     var _dragUp = function (e) {
-        var distancePercent = Math.round(((-(distanceDelta - e.gesture.distance)) / window.innerHeight) * 100);
-        var opacity = (distancePercent < 30) ? 30 : distancePercent;
+        var opacity = Math.round(((-(distanceDelta - e.gesture.distance)) / window.innerHeight) * 100);
 
         translateElement(cardElements.active, 0, distanceDelta - e.gesture.distance, 0);
         translateElement(cardElements.after, 0, window.innerHeight - (-(distanceDelta - e.gesture.distance)), 0);
@@ -183,8 +182,7 @@ var Suaip = (function (Hammer, window) {
     var _dragLeft = function (e) {
         if (draggingDown) return;
         translateElement(cardElements.active, -e.gesture.distance, distanceDelta, 0);
-        var distancePercent = Math.round((e.gesture.distance / cardElements.active.scrollWidth) * 100);
-        var opacity = (distancePercent < 30) ? 30 : distancePercent;
+        var opacity = Math.round((e.gesture.distance / cardElements.active.scrollWidth) * 100);
 
         translateElement(cardElements.right, cardElements.active.scrollWidth - e.gesture.distance, 0, 0);
         cardElements.right.getElementsByTagName('p')[0].style.color = 'rgba(0, 0, 0, 0.' + opacity + ')';
@@ -193,8 +191,7 @@ var Suaip = (function (Hammer, window) {
     var _dragRight = function (e) {
         if (draggingDown) return;
         translateElement(cardElements.active, e.gesture.distance, distanceDelta, 0);
-        var distancePercent = Math.round((e.gesture.distance / cardElements.active.scrollWidth) * 100);
-        var opacity = (distancePercent < 30) ? 30 : distancePercent;
+        var opacity = Math.round((e.gesture.distance / cardElements.active.scrollWidth) * 100);
 
         translateElement(cardElements.left, -(cardElements.active.scrollWidth - e.gesture.distance), 0, 0);
         cardElements.left.getElementsByTagName('p')[0].style.color = 'rgba(0, 0, 0, 0.' + opacity + ')';
@@ -206,8 +203,7 @@ var Suaip = (function (Hammer, window) {
      * @param {Event} e Drag event
      */
     var _dragDown = function (e) {
-        var distancePercent = Math.round(((distanceDelta + e.gesture.distance) / window.innerHeight) * 100);
-        var opacity = ( distancePercent < 30 ) ? 30 : distancePercent;
+        var opacity = Math.round(((distanceDelta + e.gesture.distance) / window.innerHeight) * 100);
 
         translateElement(cardElements.active, 0, distanceDelta + e.gesture.distance, 0);
         translateElement(cardElements.after, 0, -(window.innerHeight - (e.gesture.distance + distanceDelta)), 0);

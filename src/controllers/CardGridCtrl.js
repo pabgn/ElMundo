@@ -1,7 +1,7 @@
 (function (app, Suaip) {
 	'use strict';
 
-	app.controller('CardGridCtrl', ['$scope', function ($scope) {
+	app.controller('CardGridCtrl', ['$scope', 'newsService', function ($scope, newsService) {
 		$scope.level = 0;
 		$scope.sectionIndex = [1, 0];
 
